@@ -1,0 +1,14 @@
+{
+  "name": "price-markup-calc",
+  "version": "1.0.0",
+  "description": "A tool for calculating price markups.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "author": "Jackson Hong",
+  "license": "ISC",
+  "devDependencies": {
+    "jasmine": "^2.5.2"
+  }
+}
