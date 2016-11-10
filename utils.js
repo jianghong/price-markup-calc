@@ -16,7 +16,17 @@ function toDollars(cents) {
   return cents / 100;
 }
 
+/*
+ * Check if n is a Number.
+ * @param {Number} n
+ * @return {Boolean} isNumber
+ */
+function isNumber(n) {
+  return typeof n === 'number';
+}
+
 module.exports = {
   toCents: toCents,
   toDollars: toDollars,
+  isNumber: isNumber,
 }

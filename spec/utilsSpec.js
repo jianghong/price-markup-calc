@@ -35,4 +35,16 @@ describe('utils', function() {
       expect(sut).toEqual(34.51)
     });
   });
+  describe('isNumber', function() {
+    it('should return true for a number', function() {
+      var sut = utils.isNumber(45);
+
+      expect(sut).toEqual(true);
+    });
+    it('should return false for a non number', function() {
+      var sut = utils.isNumber('45');
+
+      expect(sut).toEqual(false);
+    });
+  });
 });
