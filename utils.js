@@ -4,7 +4,7 @@
  * @return {Number} cents
  */
 function toCents(dollars) {
-  return 0;
+  return Math.round(dollars * 100);
 }
 
 /*
@@ -13,7 +13,7 @@ function toCents(dollars) {
  * @return {Number} dollars
  */
 function toDollars(cents) {
-  return 0;
+  return cents / 100;
 }
 
 module.exports = {
