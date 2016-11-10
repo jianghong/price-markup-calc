@@ -1,4 +1,5 @@
 var estimateCalc = require('../estimateCalc');
+var Materials = require('../constants').Materials;
 
 describe('estimateCalc', function() {
   describe('should check for basePrice', function() {
@@ -17,39 +18,89 @@ describe('estimateCalc', function() {
   });
 
   it('should apply the flat base markup', function() {
+    var params = {
+      basePrice: 20,
+    };
+    var sut = estimateCalc(params);
 
+    expect(sut).toEqual(21);
   });
 
   describe('when applying markup for people', function() {
     it('should apply no markup for 0 people', function() {
+      var params = {
+        basePrice: 20,
+        numPeople: 0,
+      };
+      var sut = estimateCalc(params);
 
-    });
-    it('should apply no markup if numPersons is not specified', function() {
-
+      expect(sut).toEqual(21);
     });
     it('should apply the correct markup for one person', function() {
+      var params = {
+        basePrice: 20,
+        numPeople: 1,
+      };
+      var sut = estimateCalc(params);
 
+      expect(sut).toEqual(21.25);
     });
-    it('should apply the correct markup for 3 people', function() {
+    it('should apply the correct markup for 100 people', function() {
+      var params = {
+        basePrice: 20,
+        numPeople: 100,
+      };
+      var sut = estimateCalc(params);
 
+      expect(sut).toEqual(46.2);
     });
   });
 
   describe('when applying markup for materials', function() {
-    it('should apply no markup if no materials are specified', function() {
+    it('should apply the correct markup for drugs', function() {
+      var params = {
+        basePrice: 20,
+        materials: [Materials.DRUGS]
+      };
+      var sut = estimateCalc(params);
 
+      expect(sut).toEqual(22.57);
     });
-    it('should the correct markup for drugs', function() {
+    it('should apply the correct markup for food', function() {
+      var params = {
+        basePrice: 20,
+        materials: [Materials.FOOD]
+      };
+      var sut = estimateCalc(params);
 
+      expect(sut).toEqual(23.73);
     });
-    it('should the correct markup for food', function() {
+    it('should apply the correct markup for electronics', function() {
+      var params = {
+        basePrice: 20,
+        materials: [Materials.ELECTRONICS]
+      };
+      var sut = estimateCalc(params);
 
+      expect(sut).toEqual(21.42);
     });
-    it('should the correct markup for electronics', function() {
+    it('should apply multiple markups for multiple materials', function() {
+      var params = {
+        basePrice: 20,
+        materials: [Materials.ELECTRONICS, Materials.FOOD, 'foobar', Materials.DRUGS],
+      };
+      var sut = estimateCalc(params);
 
+      expect(sut).toEqual(23.72);
     });
-    it('should no markup for materials not needing a markup', function() {
+    it('should not markup for materials not needing a markup', function() {
+      var params = {
+        basePrice: 20,
+        materials: ['foobar']
+      };
+      var sut = estimateCalc(params);
 
+      expect(sut).toEqual(22.57);
     });
   });
 

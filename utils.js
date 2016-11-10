@@ -13,7 +13,9 @@ function toCents(dollars) {
  * @return {Number} dollars
  */
 function toDollars(cents) {
-  return cents / 100;
+  var rounded = (cents / 100).toFixed(2);
+
+  return +rounded;
 }
 
 /*

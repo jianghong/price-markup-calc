@@ -1,4 +1,25 @@
 var utils = require('./utils');
+var Markups = require('./constants').Markups;
+
+function calculateFlatMarkup(cents) {
+  return cents + (cents * Markups.FLAT_BASE);
+}
+
+function calculatePersonsMarkup(cents, numPeople) {
+  return cents * numPeople * Markups.PERSONS;
+}
+
+function calculateMaterialsMarkup(cents, materials) {
+  var markups = materials.map(function(material) {
+    return Markups.MATERIALS[material];
+  });
+
+  console.log(markups);
+
+  return markups.reduce(function(prev, curr) {
+    return prev + (cents * curr);
+  }, 0);
+}
 
 function estimateCalc(params) {
   // Thankfully, this sort of param checking is easily handled with ES6 :)
@@ -9,7 +30,14 @@ function estimateCalc(params) {
   if (!basePrice || !utils.isNumber(basePrice)) {
     throw new Error('Invalid param basePrice: should be a Number');
   }
-  return 0;
+
+  var cents = utils.toCents(basePrice);
+  var withFlatMarkup = calculateFlatMarkup(cents);
+  var estimate = withFlatMarkup +
+                 calculatePersonsMarkup(withFlatMarkup, numPeople) +
+                 calculateMaterialsMarkup(withFlatMarkup, materials);
+
+  return utils.toDollars(estimate);
 }
 
 module.exports = estimateCalc;

@@ -34,6 +34,11 @@ describe('utils', function() {
 
       expect(sut).toEqual(34.51)
     });
+    it('should round to two decimal places', function() {
+      var sut = utils.toDollars(3451.634);
+
+      expect(sut).toEqual(34.52)
+    });
   });
   describe('isNumber', function() {
     it('should return true for a number', function() {
