@@ -6,7 +6,7 @@ function calculateFlatMarkup(cents) {
 }
 
 function calculatePersonsMarkup(cents, numPeople) {
-  return cents * numPeople * Markups.PERSONS;
+  return cents * (numPeople * Markups.PERSONS);
 }
 
 function calculateMaterialsMarkup(cents, materials) {
