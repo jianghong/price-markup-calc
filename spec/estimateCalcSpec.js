@@ -91,7 +91,7 @@ describe('estimateCalc', function() {
       };
       var sut = estimateCalc(params);
 
-      expect(sut).toEqual(23.72);
+      expect(sut).toEqual(25.73);
     });
     it('should not markup for materials not needing a markup', function() {
       var params = {
@@ -100,13 +100,40 @@ describe('estimateCalc', function() {
       };
       var sut = estimateCalc(params);
 
-      expect(sut).toEqual(22.57);
+      expect(sut).toEqual(21);
     });
   });
 
   describe('when applying markup for people and materials', function() {
     it('should apply the correct markup', function() {
+      var params = {
+        basePrice: 1299.99,
+        numPeople: 3,
+        materials: [Materials.FOOD]
+      };
+      var sut = estimateCalc(params);
 
+      expect(sut).toEqual(1591.58);
+    });
+    it('should pass example 2', function() {
+      var params = {
+        basePrice: 5432.00,
+        numPeople: 1,
+        materials: [Materials.DRUGS]
+      };
+      var sut = estimateCalc(params);
+
+      expect(sut).toEqual(6199.81);
+    });
+    it('should pass example 3', function() {
+      var params = {
+        basePrice: 12456.95,
+        numPeople: 4,
+        materials: ['books']
+      };
+      var sut = estimateCalc(params);
+
+      expect(sut).toEqual(13707.63);
     });
   });
 });

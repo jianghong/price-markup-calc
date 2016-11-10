@@ -11,10 +11,8 @@ function calculatePersonsMarkup(cents, numPeople) {
 
 function calculateMaterialsMarkup(cents, materials) {
   var markups = materials.map(function(material) {
-    return Markups.MATERIALS[material];
+    return Markups.MATERIALS[material] || 0;
   });
-
-  console.log(markups);
 
   return markups.reduce(function(prev, curr) {
     return prev + (cents * curr);
