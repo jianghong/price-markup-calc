@@ -77,4 +77,5 @@ jspm_packages
 
 
 
-#!! ERROR: javascript is undefined. Use list command to see defined gitignore types !!#
+*.swp
+*.swo
