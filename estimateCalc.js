@@ -19,6 +19,19 @@ function calculateMaterialsMarkup(cents, materials) {
   }, 0);
 }
 
+/*
+ * Return an estimate price based on parameters.
+ *
+ * Required param:
+ *   basePrice {Number}
+ *
+ * Optional params:
+ *   numPeople {Number}
+ *   materials {Array}
+ *
+ * @param {Object} params
+ * @return {Number} estimate
+ */
 function estimateCalc(params) {
   // Thankfully, this sort of param checking is easily handled with ES6 :)
   var basePrice = params.basePrice;
