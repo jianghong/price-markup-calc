@@ -20,3 +20,16 @@ Running tests
 -------
 
     npm test
+
+Remarks
+-------------
+
+I decided on a pure function approach rather than object oriented because Javascript lends itself nicer to functional programming than object oriented programming in my opinion.
+
+I decided to go with passing in an object as the main input instead of positional arguments because I wanted two of the parameters to be optional. It's a bit nicer to allow for optional parameters this way, so the caller of the function doesn't have to pass in nulls as arguments.
+
+I made the decision early to convert all the price to cents before doing any operations. This practice was drilled into me when working at Wave. We want to avoid doing arithmetic with floating points as that is imprecise compared to doing whole number arithmetic.
+
+I have three main calculation functions `calculateFlatMarkup`, `calculatePersonsMarkup`, `calculateMaterialsMarkup` which handle the calculations for the different types of markups. I could have made them a bit more generic but I decided that was not necessary at the moment and it is easy enough to refactor for that case.
+
+I stored the data such as materials and markup values in the constants file just for ease of access prevent magic numbers from being everywhere.
